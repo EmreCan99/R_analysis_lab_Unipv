@@ -1,0 +1,25 @@
+---
+title: Stats
+---
+
+```{r include = TRUE}
+for (i in seq_along(bax_1A)){
+  name = names(bax_1A[i])
+  # print(shapiro.test(bax_1A[[i]]$Mean))
+  if (shapiro.test(bax_1A[[i]]$Mean)$p.value >= 0.05){
+    print(paste("passed :", name))
+  } 
+  else {print(paste("NOT passed :", name))}
+}
+```
+
+```{r include = TRUE}
+for (i in seq_along(bax_1B)){
+  name = names(bax_1B[i])
+  # print(shapiro.test(bax_1B[[i]]$Mean))
+  if (shapiro.test(bax_1B[[i]]$Mean)$p.value >= 0.05){
+    print(paste("passed :", name))
+  } 
+  else {print(paste("NOT passed :", name))}
+}
+```
