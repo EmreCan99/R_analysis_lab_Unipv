@@ -75,10 +75,6 @@ bax_hist <- ggplot(bax_p84_1A[2:15,], aes(x = Mean)) + geom_histogram(binwidth =
 bax_hist
 
 
-# Try to Calculate Z-scores to exclude outliers
-ilk_z_scores <- (bax_p84_1A$Mean - mean(bax_p84_1A$Mean, na.rm = TRUE)) / 
-                  sd(bax_p84_1A$Mean, na.rm = TRUE)
-outliers <- bax_p84_1A[abs(ilk_z_scores) > 3, ] # by 3
 
 
 

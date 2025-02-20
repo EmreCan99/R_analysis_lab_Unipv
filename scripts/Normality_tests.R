@@ -1,31 +1,5 @@
+# Normality Tests
 
-# Outliers: Calculate Z-scores to exclude Outliers ----
-
-library(dplyr)
-
-# Combine all data frames
-data_combined <- bind_rows(gl_bax$l_1B$p87, gl_bax$l_1B$p88, .id = "source")  # Add "source" column to track origin
-
-# Calculate Z-scores across combined data
-data_combined <- data_combined %>%
-  mutate(
-    z_scores = (Mean - mean(Mean, na.rm = TRUE)) / sd(Mean, na.rm = TRUE),
-    outlier = abs(z_scores) > 1  # Flag outliers with Z > 3
-  )
-
-# View results
-print(data_combined)
-
-# Separate outliers
-outliers <- data_combined %>% filter(outlier)
-non_outliers <- data_combined %>% filter(!outlier)
-
-# Optional: Split back into individual datasets
-  # result_list <- split(data_combined, data_combined$source)
-
-
-
-# Normality Tests ----
 
 # Shapiro ----
 shapiro.test(bax_1A$p84$Mean)
