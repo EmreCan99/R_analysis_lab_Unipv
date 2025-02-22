@@ -76,5 +76,24 @@ bax_hist
 
 
 
+# get the means to compare
+
+bound_names <- c()
+
+data_combined <- bind_rows(
+  lapply(names(gl_bax.p$l_11B), function(name) {
+    bound_names <<- c(bound_names, name)  # Collect the names of data frames
+    gl_bax.p$l_11B[[name]]
+  }),
+  .id = "source"  # Add "source" column to track origin
+)
+
+print(mean(data_combined$Mean))
+m11B <- mean(data_combined$Mean)
+
+
+
+
+
 
 

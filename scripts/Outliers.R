@@ -1,12 +1,23 @@
 # Outliers: Calculate Z-scores to exclude Outliers ----
-
+# one for each ab
 library(dplyr)
 
-# Combine all data frames
-data_combined <- bind_rows(gl_bax.p$l_1B$p87, 
-                           gl_bax.p$l_1B$p88, 
-                           gl_bax.p$l_1B$p89, 
-                           gl_bax.p$l_1B$p90, .id = "source")  # Add "source" column to track origin
+
+# Combine all data frames ----
+# from gpt
+bound_names <- c()
+
+# Use a for loop to dynamically bind rows
+data_combined <- bind_rows(
+  lapply(names(gl_bax.p$l_1B), function(name) {
+    bound_names <<- c(bound_names, name)  # Collect the names of data frames
+    gl_bax.p$l_1B[[name]]
+  }),
+  .id = "source"  # Add "source" column to track origin
+)
+# Print the names of the bound data frames
+cat("Data frames bound:\n", paste(bound_names, collapse = ", "), "\n")
+
 
 # Calculate Z-scores across combined data
 data_combined <- data_combined %>%
