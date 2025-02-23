@@ -1,6 +1,5 @@
 # Normality Tests
 
-# from gpt 
 # If all three groups have p-values > 0.05, you can proceed with parametric tests.
 # If one or more groups have p-values ≤ 0.05, use non-parametric tests.
 
@@ -15,9 +14,9 @@ bound_names <- c()
 
 # Use a for loop to dynamically bind rows
 data_combined <- bind_rows(
-  lapply(names(gl_bax.p$l_11B), function(name) {
+  lapply(names(gl_bax.p$l_1B), function(name) {
     bound_names <<- c(bound_names, name)  # Collect the names of data frames
-    gl_bax.p$l_11B[[name]]
+    gl_bax.p$l_1B[[name]]
   }),
   .id = "source"  # Add "source" column to track origin
 )
@@ -26,7 +25,9 @@ cat("Data frames bound:\n", paste(bound_names, collapse = ", "), "\n")
 
 # EXCLUDE THE AREAS
 data_combined <- data_combined[data_combined$X != 1,]
-print("Area rows dropped")
+cat("Area rows dropped\n")
+
+cat("Total cells: ", paste(nrow(data_combined)), "\n  --- \n")
 
 
 
@@ -38,9 +39,9 @@ print(paste("result_sh: ", result_sh))
 
 
 if (!"Normality" %in% names(df)) {
-  gl_bax.p$l_11B$Normality <- data.frame(Shapiro = NA_character_, stringsAsFactors = FALSE)
+  gl_bax.p$l_1B$Normality <- data.frame(Shapiro = NA_character_, stringsAsFactors = FALSE)
 }
-gl_bax.p$l_11B$Normality$Shapiro <- ifelse(result_sh > alpha, "passed", "NOT passed")
+gl_bax.p$l_1B$Normality$Shapiro <- ifelse(result_sh > alpha, "passed", "NOT passed")
 
 
 
@@ -50,7 +51,7 @@ library(nortest)
 result_ad <- ad.test(data_combined$Mean)$p.value
 print(paste("result_ad: ", result_ad))
 
-gl_bax.p$l_11B$Normality <- gl_bax.p$l_11B$Normality %>%
+gl_bax.p$l_1B$Normality <- gl_bax.p$l_1B$Normality %>%
   mutate(Anderson = ifelse(result_ad > alpha, "passed", "NOT passed"))
 
 
@@ -72,7 +73,7 @@ agostino.test <- function(x) {
 result_ag <- agostino.test(data_combined$Mean)
 print(paste("result_ag: ", result_ag))
 
-gl_bax.p$l_11B$Normality <- gl_bax.p$l_11B$Normality %>%
+gl_bax.p$l_1B$Normality <- gl_bax.p$l_1B$Normality %>%
   mutate(Agostino = ifelse(result_ag > alpha, "passed", "NOT passed"))
 
 
@@ -82,13 +83,13 @@ result_ko <- ks.test(data_combined$Mean, "pnorm", mean = mean(data_combined$Mean
 print(paste("result_ko: ", result_ko))
 
 
-gl_bax.p$l_11B$Normality <- gl_bax.p$l_11B$Normality %>%
+gl_bax.p$l_1B$Normality <- gl_bax.p$l_1B$Normality %>%
   mutate(Kolmogorov = ifelse(result_ko > alpha, "passed", "NOT passed"))
 
 
 
 # Add all the P Values
 tempdf <- data.frame(Shapiro = result_sh, Anderson = result_ad, Agostino = result_ag, Kolmogorov = result_ko)
-gl_bax.p$l_11B$Normality <- rbind(gl_bax.p$l_11B$Normality, tempdf)
+gl_bax.p$l_1B$Normality <- rbind(gl_bax.p$l_1B$Normality, tempdf)
 
 
