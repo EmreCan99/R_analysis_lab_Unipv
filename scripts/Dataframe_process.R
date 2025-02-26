@@ -1,20 +1,4 @@
 
-# OLD ----
-# Import Data
-# bax_p84_1A <- read.csv("data/bax_p84_1A_od-p.csv")
-# bax_p85_1A <- read.csv("data/bax_p85_1A_od-p.csv")
-# 
-# bax_p87_1B <- read.csv("data/bax_p87_1B_od-p.csv")
-# bax_p88_1B <- read.csv("data/bax_p88_1B_od-p.csv")
-# 
-# bax_p92_7A <- read.csv("data/bax_p92_7A_od-p.csv")
-# bax_p93_7A <- read.csv("data/bax_p93_7A_od-p.csv")
-# 
-# bax_p96_7B <- read.csv("data/bax_p96_7B_od-p.csv")
-# bax_p97_7B <- read.csv("data/bax_p97_7B_od-p.csv")
-
-
-
 # Import the entire folder .csv ----
 
 # Set the directory containing the files

@@ -96,4 +96,3 @@ m11B <- mean(data_combined$Mean)
 
 
 
-

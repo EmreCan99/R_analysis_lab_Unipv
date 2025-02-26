@@ -1,14 +1,11 @@
 # Normality Tests
 
-!!! EXCLUDE THE AREAS
-data_combined <- data_combined[data_combined$X != 1,]
-print("Area rows dropped")
+# to use after outliers
 
-# from gpt 
 # If all three groups have p-values > 0.05, you can proceed with parametric tests.
 # If one or more groups have p-values ≤ 0.05, use non-parametric tests.
+# 28 to replace ab
 
-# ab = gl_bax.p$l_
 
 library(dplyr)
 alpha <- 0.05
@@ -18,10 +15,11 @@ alpha <- 0.05
 bound_names <- c()
 
 # Use a for loop to dynamically bind rows
-data_combined <- bind_rows(
-  lapply(names(gl_bax.p$l_1A), function(name) {
+data_combined_11B <- bind_rows(
+  lapply(names(gl_bax.p$l_11B), function(name) {
+    if (name != "Normality"){
     bound_names <<- c(bound_names, name)  # Collect the names of data frames
-    gl_bax.p$l_1A[[name]]
+    gl_bax.p$l_11B[[name]]}
   }),
   .id = "source"  # Add "source" column to track origin
 )
@@ -29,35 +27,50 @@ data_combined <- bind_rows(
 cat("Data frames bound:\n", paste(bound_names, collapse = ", "), "\n")
 
 # EXCLUDE THE AREAS
-data_combined <- data_combined[data_combined$X != 1,]
-print("Area rows dropped")
+data_combined_11B <- data_combined_11B[data_combined_11B$X != 1,]
+cat("Area rows dropped\n")
+
+cat("Total cells: ", paste(nrow(data_combined_11B)), "\n  --- \n")
+
+
+# Calculate Z-scores across combined data
+
+data_combined_11B <- data_combined_11B %>%
+  mutate(
+    z_scores = (Mean - mean(Mean, na.rm = TRUE)) / sd(Mean, na.rm = TRUE),
+    outlier = abs(z_scores) > 2  # Flag outliers with Z > 3
+  )
+
+
+# Exclude outliers
+num_outliers <- sum(data_combined_11B$outlier)
+data_combined_11B <- data_combined_11B %>%
+  filter(!outlier)
+cat(num_outliers, "Outlier rows dropped\n")
 
 
 
 # Shapiro ----
 
 # Calculate across combined data
-result_sh <- shapiro.test(data_combined$Mean)$p.value
+result_sh <- shapiro.test(data_combined_11B$Mean)$p.value
 print(paste("result_sh: ", result_sh))
 
 
 if (!"Normality" %in% names(df)) {
-  gl_bax.p$l_1A$Normality <- data.frame(Shapiro = NA_character_, stringsAsFactors = FALSE)
+  gl_bax.p$l_11B$Normality <- data.frame(Shapiro = NA_character_, stringsAsFactors = FALSE)
 }
-gl_bax.p$l_1A$Normality$Shapiro <- ifelse(result_sh > alpha, "passed", "NOT passed")
-
-
-
+gl_bax.p$l_11B$Normality$Shapiro <- ifelse(result_sh > alpha, "passed", "NOT passed")
 
 
 
 # Anderson-Darling Test ----
 library(nortest)
 
-result_ad <- ad.test(data_combined$Mean)$p.value
+result_ad <- ad.test(data_combined_11B$Mean)$p.value
 print(paste("result_ad: ", result_ad))
 
-gl_bax.p$l_1A$Normality <- gl_bax.p$l_1A$Normality %>%
+gl_bax.p$l_11B$Normality <- gl_bax.p$l_11B$Normality %>%
   mutate(Anderson = ifelse(result_ad > alpha, "passed", "NOT passed"))
 
 
@@ -76,28 +89,26 @@ agostino.test <- function(x) {
   return(p_value)
 }
 
-result_ag <- agostino.test(data_combined$Mean)
+result_ag <- agostino.test(data_combined_11B$Mean)
 print(paste("result_ag: ", result_ag))
 
-gl_bax.p$l_1A$Normality <- gl_bax.p$l_1A$Normality %>%
+gl_bax.p$l_11B$Normality <- gl_bax.p$l_11B$Normality %>%
   mutate(Agostino = ifelse(result_ag > alpha, "passed", "NOT passed"))
 
 
 
 # Kolmogorov-Smirnov Test ----
-result_ko <- ks.test(data_combined$Mean, "pnorm", mean = mean(data_combined$Mean), sd = sd(data_combined$Mean))$p.value
+result_ko <- ks.test(data_combined_11B$Mean, "pnorm", mean = mean(data_combined_11B$Mean), sd = sd(data_combined_11B$Mean))$p.value
 print(paste("result_ko: ", result_ko))
 
 
-gl_bax.p$l_1A$Normality <- gl_bax.p$l_1A$Normality %>%
+gl_bax.p$l_11B$Normality <- gl_bax.p$l_11B$Normality %>%
   mutate(Kolmogorov = ifelse(result_ko > alpha, "passed", "NOT passed"))
+
+
 
 # Add all the P Values
 tempdf <- data.frame(Shapiro = result_sh, Anderson = result_ad, Agostino = result_ag, Kolmogorov = result_ko)
-gl_bax.p$l_1A$Normality <- rbind(gl_bax.p$l_1A$Normality, tempdf)
-
-
-
-
+gl_bax.p$l_11B$Normality <- rbind(gl_bax.p$l_11B$Normality, tempdf)
 
 
