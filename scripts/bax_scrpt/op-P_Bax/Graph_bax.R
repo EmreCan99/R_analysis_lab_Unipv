@@ -1,55 +1,4 @@
 
-
-# 1, 7, 11 must be in a single dataframe with their groups tagged
-# are called: set_combined
-
-# Anova
-anova_result <- aov(Mean ~ Group, data = set_combined)
-summary(anova_result)
-
-
-# Verify the assumptions on homogenity
-# library(car)
-# 
-# leveneTest(Mean ~ Group, data = set_combined)  # Levene's Test
-
-
-# Tukey's HSD (for pairwise comparisons)
-
-tukey_result <- TukeyHSD(anova_result)
-print(tukey_result)
-
-# Add Pair-wise comparison to the grand listü
-
-tukey_df <- data.frame(
-  Groups = rownames(tukey_result$Group),
-  p.value = tukey_result$Group[, 4]
-)
-
-# ! Change the list Title
-group_title <- "1A,7A,11A"
-gl_bax.p$Tukey[[group_title]] <- tukey_df
-
-# Sink to the txt file
-
-path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/bax.p.txt"
-sink(path, append = TRUE)
-
-cat("Tukey", group_title, "\n")
-tukey_result$Group
-cat("\n ----- \n")
-
-sink()
-
-
-# Save the grand list as R data
-saveRDS(gl_bax.p, "analysis/gl_bax.p.rds")
-cat("R data saved")
-
-
-
-
-
 # Visualition
 
 library(ggplot2)
@@ -106,9 +55,9 @@ plt.sig <- plt +
             aes(x=x, y=y), inherit.aes = FALSE) +
   geom_text(data = data.frame(x=c(2.5), y=c(hgt+2)), label = "***", size = 7, 
             aes(x=x, y=y), inherit.aes = FALSE) +
-
+  
   geom_line(data = data.frame(x=c(1,3), y=c(hgt2,hgt2)), size = size, 
-          aes(x=x, y=y), inherit.aes = FALSE) +
+            aes(x=x, y=y), inherit.aes = FALSE) +
   geom_line(data = data.frame(x=c(1,1), y=c(hgt2,hgt2-5)), size = size, 
             aes(x=x, y=y), inherit.aes = FALSE) +
   geom_line(data = data.frame(x=c(3,3), y=c(hgt2,hgt2-5)), size = size, 
@@ -140,4 +89,3 @@ ggsave(filename = "analysis/bax_1B_7B-11B.sig.png", plot = plt.sig,
        width = 12, height = 10, dpi = 300, units = "cm")
 
 saveRDS(plt.sig, file = "analysis/bax_1B_7B-11B.sig.rds")
-
