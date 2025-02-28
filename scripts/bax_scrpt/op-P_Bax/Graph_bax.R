@@ -82,10 +82,10 @@ plt.sig
 ggsave(filename = "analysis/bax_1A_7A-11A.png", plot = plt, 
        width = 12, height = 10, dpi = 300, units = "cm")
 
-saveRDS(plt, file = "analysis/bax_1A_7A-11A.rds")
+saveRDS(plt, file = "analysis/bax_1A_7A_11A.rds")
 
 
 ggsave(filename = "analysis/bax_1B_7B-11B.sig.png", plot = plt.sig, 
        width = 12, height = 10, dpi = 300, units = "cm")
 
-saveRDS(plt.sig, file = "analysis/bax_1B_7B-11B.sig.rds")
+saveRDS(plt.sig, file = "analysis/bax_1B_7B_11B.sig.rds")

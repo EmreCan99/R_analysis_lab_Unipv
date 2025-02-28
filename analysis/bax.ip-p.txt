@@ -17,6 +17,16 @@ Table
 3 Treated_2 0.020011013 0.006477255
 
  ----- 
+Kruskal-Wallis 1A, 7A, 11A 
+
+	Kruskal-Wallis rank sum test
+
+data:  Density by Group
+Kruskal-Wallis chi-squared = 4.5636, df = 2, p-value = 0.1021
+
+Kruskal-Wallis test shows no significance 
+
+ ----- 
 1B, 7B, 11B, for the threshold  96 
 
 p87  :  0.02315719 
@@ -30,10 +40,21 @@ p106  :  0.02036333
 p107  :  0.01613502 
 p108  :  0.01451982 
 p109  :  0.02282805 
-Table 
+
+ Table 
       Group       Mean          SE
 1   Control 0.02012718 0.004106032
 2 Treated_1 0.01063419 0.004453114
 3 Treated_2 0.01846156 0.001906854
+
+ ----- 
+Kruskal-Wallis 1B, 7B, 11B 
+
+	Kruskal-Wallis rank sum test
+
+data:  Density by Group
+Kruskal-Wallis chi-squared = 2.8485, df = 2, p-value = 0.2407
+
+Kruskal-Wallis test shows no significance 
 
  ----- 

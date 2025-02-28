@@ -98,3 +98,10 @@ set_combined <- bind_rows(
 )
 
 cat("set combined for ANOVA")
+
+
+# Save the this batch of set_combined
+
+saveRDS(set_combined, file = "analysis/*****.rds")
+
+

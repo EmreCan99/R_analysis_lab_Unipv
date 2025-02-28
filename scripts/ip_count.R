@@ -45,8 +45,10 @@ for (df_name in names(l_1B_list)) {
   cat(df_name, " : ", density, "\n")
   sink()
   
- 
-}
+  }
+  # Prepare the df for Kruskal test
+  cnt_densities <- dens_list
+  
 }
 
 # Calculate mean and standard error
@@ -99,8 +101,10 @@ for (df_name in names(l_7B_list)) {
     cat(df_name, " : ", density, "\n")
     sink()
     
-   
   }
+  # Prepare the df for Kruskal test
+  trt1_densities <- dens_list
+  
 }
 
 # Calculate mean and standard error
@@ -155,6 +159,8 @@ for (df_name in names(l_11B_list)) {
     sink()
   
   }
+  # Prepare the df for Kruskal test
+  trt2_densities <- dens_list
 }
 
 # Calculate mean and standard error
@@ -204,12 +210,31 @@ plot_data <- data.frame(
 path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/bax.ip-p.txt"
 sink(path, append = TRUE)
 
-cat("Table", "\n")
+cat("\n Table", "\n")
 
 print(plot_data)
 
 cat("\n ----- \n")
 
 sink()
+
+
+gl_dens <- list(Control = cnt_densities, Treated_1 = trt1_densities, Treated_2 = trt2_densities)
+
+# Flatten the nested list into a data frame
+data_sig <- bind_rows(
+  lapply(names(gl_dens), function(group) {
+    data.frame(
+      Sample = names(gl_dens[[group]]), # Extract sample names
+      Density = unlist(gl_dens[[group]]), # Extract numeric values
+      Group = group                     # Add group name
+    )
+  })
+)
+
+
+
+print(data_sig)
+
 
 
