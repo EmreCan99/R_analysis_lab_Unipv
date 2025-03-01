@@ -12,7 +12,6 @@ summary(anova_result)
 summary_table <- summary(anova_result)
 p_value <- summary_table[[1]]$`Pr(>F)`[1]
 
-
 # Verify the assumptions on homogenity
 # library(car)
 # 
@@ -32,13 +31,14 @@ tukey_df <- data.frame(
 )
 
 # ! Change the list Title
-group_title <- "1B,7B,11B"
-gl_bax.p$Tukey[[group_title]] <- tukey_df
+group_title <- "1B,7B, 11B"
+gl_bcl2.p$Tukey[[group_title]] <- tukey_df
 
 # Sink to the txt file
 
-path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/bax.od-p.txt"
+path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/bcl2.od-p.txt"
 sink(path, append = TRUE)
+
 
 cat("ANOVA", group_title, "\n")
 print(summary(anova_result))
@@ -55,7 +55,7 @@ sink()
 
 
 # Save the grand list as R data
-saveRDS(gl_bax.p, "analysis/gl_bax.p.rds")
+saveRDS(gl_bcl2.p, "analysis/gl_bcl2.p.rds")
 cat("R data saved")
 
 

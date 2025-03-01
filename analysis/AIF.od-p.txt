@@ -1,0 +1,29 @@
+Backup file for AIF purkinje
+ANOVA 1A,7A,11A 
+            Df Sum Sq Mean Sq F value  Pr(>F)   
+Group        2    830   415.0   6.069 0.00334 **
+Residuals   92   6291    68.4                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+ Tukey 1A,7A,11A 
+                         diff        lwr        upr      p adj
+Treated_1-Control   -5.310377 -10.355397 -0.2653576 0.03671294
+Treated_2-Control    1.581888  -3.352455  6.5162313 0.72611101
+Treated_2-Treated_1  6.892266   2.000385 11.7841458 0.00326706
+
+ ----- 
+ANOVA 1B,7B,11B 
+             Df Sum Sq Mean Sq F value           Pr(>F)    
+Group         2   5905  2952.4   37.12 0.00000000000057 ***
+Residuals   107   8511    79.5                             
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+ Tukey 1B,7B,11B 
+                         diff        lwr       upr                 p adj
+Treated_1-Control   -9.504014 -14.517726 -4.490302 0.0000502110643186837
+Treated_2-Control    7.985532   2.941674 13.029390 0.0007967224834631859
+Treated_2-Treated_1 17.489546  12.657804 22.321287 0.0000000000002852163
+
+ ----- 

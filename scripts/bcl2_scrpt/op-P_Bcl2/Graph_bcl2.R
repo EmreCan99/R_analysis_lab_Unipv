@@ -9,7 +9,7 @@ ggplot(set_combined, aes(x = Group, y = Mean, fill = Group)) +
   geom_boxplot() +
   geom_jitter(width = 0.2, alpha = 0.3) +
   theme_minimal() +
-  labs(title = "One-Way ANOVA Results - Bax 1A, 7A, 11A", y = "op-Mean", x = "Condition")
+  labs(title = "One-Way ANOVA Results - bcl2 1A, 7A, 11A", y = "op-Mean", x = "Condition")
 
 
 
@@ -20,7 +20,7 @@ plt <- ggplot(set_combined, aes(x = Group, y = Mean, fill = Group)) +
   stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.2) +
   # geom_jitter(width = 0.2, alpha = 0.5, size = 0.5) +
   # ! Change the title
-  labs(title = "Bax 1A, 7A, 11A", y = "Mean Gray-Value", x = "Condition") +
+  labs(title = "bcl2 1B, 7B, 1B", y = "Mean Gray-Value", x = "Condition") +
   theme(
     legend.position = "none",
     text = element_text(size = 14),
@@ -72,13 +72,13 @@ plt.sig
 #Save the plot
 
 
-ggsave(filename = "analysis/bax_1A_7A_11A.png", plot = plt, 
+ggsave(filename = "analysis/bcl2_1B_7B_11B.png", plot = plt, 
        width = 12, height = 10, dpi = 300, units = "cm")
 
-saveRDS(plt, file = "analysis/bax_1A_7A_11A.rds")
+saveRDS(plt, file = "analysis/bcl2_1B_7B_11B.rds")
 
 
-ggsave(filename = "analysis/bax_1A_7A_11A.sig.png", plot = plt.sig, 
+ggsave(filename = "analysis/bcl2_1B_7B_11B.sig.png", plot = plt.sig, 
        width = 12, height = 10, dpi = 300, units = "cm")
 
-saveRDS(plt.sig, file = "analysis/bax_1A_7A_11A.sig.rds")
+saveRDS(plt.sig, file = "analysis/bcl2_1B_7B_11B.sig.rds")

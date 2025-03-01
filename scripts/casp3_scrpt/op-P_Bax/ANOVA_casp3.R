@@ -33,11 +33,11 @@ tukey_df <- data.frame(
 
 # ! Change the list Title
 group_title <- "1B,7B,11B"
-gl_bax.p$Tukey[[group_title]] <- tukey_df
+gl_casp3.p$Tukey[[group_title]] <- tukey_df
 
 # Sink to the txt file
 
-path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/bax.od-p.txt"
+path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/casp3.od-p.txt"
 sink(path, append = TRUE)
 
 cat("ANOVA", group_title, "\n")
@@ -55,7 +55,7 @@ sink()
 
 
 # Save the grand list as R data
-saveRDS(gl_bax.p, "analysis/gl_bax.p.rds")
+saveRDS(gl_casp3.p, "analysis/gl_casp3.p.rds")
 cat("R data saved")
 
 

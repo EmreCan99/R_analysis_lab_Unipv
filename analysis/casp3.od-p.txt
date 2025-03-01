@@ -1,0 +1,31 @@
+Backup file for casp3 purkinje
+
+
+ANOVA 1A,7A,11A 
+            Df Sum Sq Mean Sq F value               Pr(>F)    
+Group        2  22540   11270   52.05 0.000000000000000608 ***
+Residuals   94  20354     217                                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+ Tukey 1B,7B,11B 
+                         diff       lwr       upr              p adj
+Treated_1-Control   -19.38387 -28.01477 -10.75296 0.0000018543835719
+Treated_2-Control    18.44003   9.73771  27.14235 0.0000065292004788
+Treated_2-Treated_1  37.82390  28.99283  46.65496 0.0000000004835763
+
+ ----- 
+ANOVA 1B,7B,11B 
+            Df Sum Sq Mean Sq F value     Pr(>F)    
+Group        2  11662    5831   15.89 0.00000114 ***
+Residuals   94  34500     367                       
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+ Tukey 1B,7B,11B 
+                         diff         lwr       upr          p adj
+Treated_1-Control    27.15597  15.5679176 38.744018 0.000000687915
+Treated_2-Control    10.36123  -0.8908663 21.613320 0.077623784922
+Treated_2-Treated_1 -16.79474 -28.0468341 -5.542648 0.001708722553
+
+ ----- 

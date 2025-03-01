@@ -9,7 +9,7 @@ ggplot(set_combined, aes(x = Group, y = Mean, fill = Group)) +
   geom_boxplot() +
   geom_jitter(width = 0.2, alpha = 0.3) +
   theme_minimal() +
-  labs(title = "One-Way ANOVA Results - Bax 1A, 7A, 11A", y = "op-Mean", x = "Condition")
+  labs(title = "One-Way ANOVA Results - casp3 1A, 7A, 11A", y = "op-Mean", x = "Condition")
 
 
 
@@ -20,7 +20,7 @@ plt <- ggplot(set_combined, aes(x = Group, y = Mean, fill = Group)) +
   stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.2) +
   # geom_jitter(width = 0.2, alpha = 0.5, size = 0.5) +
   # ! Change the title
-  labs(title = "Bax 1A, 7A, 11A", y = "Mean Gray-Value", x = "Condition") +
+  labs(title = "casp3 1B, 7B, 11B", y = "Mean Gray-Value", x = "Condition") +
   theme(
     legend.position = "none",
     text = element_text(size = 14),
@@ -32,8 +32,8 @@ plt <- ggplot(set_combined, aes(x = Group, y = Mean, fill = Group)) +
 
 plt
 
-hgt <- 120 #Height
-hgt2 <- 150
+hgt <- 165 #Height
+hgt2 <- 165
 size <- 0.4
 
 plt.sig <- plt + 
@@ -53,8 +53,9 @@ plt.sig <- plt +
             aes(x=x, y=y), inherit.aes = FALSE) +
   geom_line(data = data.frame(x=c(1,1), y=c(hgt,hgt-5)), size = size, 
             aes(x=x, y=y), inherit.aes = FALSE) +
-  geom_text(data = data.frame(x=c(2.5), y=c(hgt+2)), label = "***", size = 7, 
+  geom_text(data = data.frame(x=c(2.5), y=c(hgt+2)), label = "**", size = 7, 
             aes(x=x, y=y), inherit.aes = FALSE) 
+  
   
   # geom_line(data = data.frame(x=c(1,3), y=c(hgt2,hgt2)), size = size, 
   #           aes(x=x, y=y), inherit.aes = FALSE) +
@@ -72,13 +73,13 @@ plt.sig
 #Save the plot
 
 
-ggsave(filename = "analysis/bax_1A_7A_11A.png", plot = plt, 
+ggsave(filename = "analysis/casp3_1A_7A_11A.png", plot = plt, 
        width = 12, height = 10, dpi = 300, units = "cm")
 
-saveRDS(plt, file = "analysis/bax_1A_7A_11A.rds")
+saveRDS(plt, file = "analysis/casp3_1A_7A_11A.rds")
 
 
-ggsave(filename = "analysis/bax_1A_7A_11A.sig.png", plot = plt.sig, 
+ggsave(filename = "analysis/casp3_1B_7B_11B.sig.png", plot = plt.sig, 
        width = 12, height = 10, dpi = 300, units = "cm")
 
-saveRDS(plt.sig, file = "analysis/bax_1A_7A_11A.sig.rds")
+saveRDS(plt.sig, file = "analysis/casp3_1B_7B_11B.sig.rds")

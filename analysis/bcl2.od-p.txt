@@ -1,0 +1,32 @@
+Backup file for Bcl2 purkinje
+
+ANOVA 1A,7A,11A 
+            Df Sum Sq Mean Sq F value Pr(>F)
+Group        2   35.2   17.60   0.685  0.507
+Residuals   79 2030.9   25.71               
+
+ ANOVA test shows no significance 
+
+ Tukey 1A,7A,11A 
+                          diff       lwr      upr     p adj
+Treated_1-Control   -1.5719643 -4.808857 1.664928 0.4804730
+Treated_2-Control   -0.9713242 -4.269877 2.327229 0.7621957
+Treated_2-Treated_1  0.6006401 -2.697913 3.899193 0.9011123
+
+ ----- 
+ANOVA 1B,7B, 11B 
+            Df Sum Sq Mean Sq F value Pr(>F)  
+Group        2    231  115.25   2.632 0.0776 .
+Residuals   88   3853   43.78                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+ ANOVA test shows no significance 
+
+ Tukey 1B,7B, 11B 
+                          diff        lwr      upr      p adj
+Treated_1-Control   -0.9486982 -5.0613055 3.163909 0.84677490
+Treated_2-Control    2.7375670 -1.3444305 6.819564 0.25154072
+Treated_2-Treated_1  3.6862651 -0.2889949 7.661525 0.07491344
+
+ ----- 

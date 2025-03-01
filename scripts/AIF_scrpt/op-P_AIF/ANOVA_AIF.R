@@ -3,7 +3,6 @@
 # are called: set_combined
 
 options(scipen = 999)
-alpha <- 0.05
 
 # Anova
 anova_result <- aov(Mean ~ Group, data = set_combined)
@@ -24,7 +23,7 @@ p_value <- summary_table[[1]]$`Pr(>F)`[1]
 tukey_result <- TukeyHSD(anova_result)
 print(tukey_result)
 
-# Add Pair-wise comparison to the grand listü
+# Add Pair-wise comparison to the grand list
 
 tukey_df <- data.frame(
   Groups = rownames(tukey_result$Group),
@@ -33,11 +32,11 @@ tukey_df <- data.frame(
 
 # ! Change the list Title
 group_title <- "1B,7B,11B"
-gl_bax.p$Tukey[[group_title]] <- tukey_df
+gl_AIF.p$Tukey[[group_title]] <- tukey_df
 
 # Sink to the txt file
 
-path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/bax.od-p.txt"
+path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/AIF.od-p.txt"
 sink(path, append = TRUE)
 
 cat("ANOVA", group_title, "\n")
@@ -55,7 +54,7 @@ sink()
 
 
 # Save the grand list as R data
-saveRDS(gl_bax.p, "analysis/gl_bax.p.rds")
+saveRDS(gl_AIF.p, "analysis/gl_AIF.p.rds")
 cat("R data saved")
 
 

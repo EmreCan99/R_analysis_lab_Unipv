@@ -16,10 +16,10 @@ bound_names <- c()
 
 # Use a for loop to dynamically bind rows
 data_combined_1A <- bind_rows(
-  lapply(names(gl_bax.p$l_1A), function(name) {
+  lapply(names(gl_bcl2.p$l_1A), function(name) {
     if (name != "Normality"){
     bound_names <<- c(bound_names, name)  # Collect the names of data frames
-    gl_bax.p$l_1A[[name]]}
+    gl_bcl2.p$l_1A[[name]]}
   }),
   .id = "source"  # Add "source" column to track origin
 )
@@ -58,9 +58,9 @@ print(paste("result_sh: ", result_sh))
 
 
 if (!"Normality" %in% names(df)) {
-  gl_bax.p$l_1A$Normality <- data.frame(Shapiro = NA_character_, stringsAsFactors = FALSE)
+  gl_bcl2.p$l_1A$Normality <- data.frame(Shapiro = NA_character_, stringsAsFactors = FALSE)
 }
-gl_bax.p$l_1A$Normality$Shapiro <- ifelse(result_sh > alpha, "passed", "NOT passed")
+gl_bcl2.p$l_1A$Normality$Shapiro <- ifelse(result_sh > alpha, "passed", "NOT passed")
 
 
 
@@ -70,7 +70,7 @@ library(nortest)
 result_ad <- ad.test(data_combined_1A$Mean)$p.value
 print(paste("result_ad: ", result_ad))
 
-gl_bax.p$l_1A$Normality <- gl_bax.p$l_1A$Normality %>%
+gl_bcl2.p$l_1A$Normality <- gl_bcl2.p$l_1A$Normality %>%
   mutate(Anderson = ifelse(result_ad > alpha, "passed", "NOT passed"))
 
 
@@ -92,7 +92,7 @@ agostino.test <- function(x) {
 result_ag <- agostino.test(data_combined_1A$Mean)
 print(paste("result_ag: ", result_ag))
 
-gl_bax.p$l_1A$Normality <- gl_bax.p$l_1A$Normality %>%
+gl_bcl2.p$l_1A$Normality <- gl_bcl2.p$l_1A$Normality %>%
   mutate(Agostino = ifelse(result_ag > alpha, "passed", "NOT passed"))
 
 
@@ -102,13 +102,13 @@ result_ko <- ks.test(data_combined_1A$Mean, "pnorm", mean = mean(data_combined_1
 print(paste("result_ko: ", result_ko))
 
 
-gl_bax.p$l_1A$Normality <- gl_bax.p$l_1A$Normality %>%
+gl_bcl2.p$l_1A$Normality <- gl_bcl2.p$l_1A$Normality %>%
   mutate(Kolmogorov = ifelse(result_ko > alpha, "passed", "NOT passed"))
 
 
 
 # Add all the P Values
 tempdf <- data.frame(Shapiro = result_sh, Anderson = result_ad, Agostino = result_ag, Kolmogorov = result_ko)
-gl_bax.p$l_1A$Normality <- rbind(gl_bax.p$l_1A$Normality, tempdf)
+gl_bcl2.p$l_1A$Normality <- rbind(gl_bcl2.p$l_1A$Normality, tempdf)
 
 

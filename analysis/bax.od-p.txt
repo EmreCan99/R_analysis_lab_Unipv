@@ -1,4 +1,12 @@
 Backup file for Bax purkinje
+
+ANOVA 1A,7A,11A 
+            Df Sum Sq Mean Sq F value       Pr(>F)    
+Group        2   4680  2339.9   19.41 0.0000000834 ***
+Residuals   96  11573   120.6                         
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
 Tukey 1A,7A,11A 
                           diff        lwr       upr           p adj
 Treated_1-Control   -15.139507 -21.433532 -8.845481 0.0000003508791
@@ -6,7 +14,15 @@ Treated_2-Control    -1.783502  -8.330878  4.763875 0.7936758739330
 Treated_2-Treated_1  13.356005   6.852620 19.859389 0.0000120652412
 
  ----- 
-Tukey 1B,7B,11B 
+ 
+ANOVA 1B,7B,11B 
+            Df Sum Sq Mean Sq F value           Pr(>F)    
+Group        2  17302    8651   34.55 0.00000000000498 ***
+Residuals   96  24038     250                             
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+ Tukey 1B,7B,11B 
                           diff         lwr       upr              p adj
 Treated_1-Control   -22.824131 -32.2833756 -13.36489 0.0000003244229967
 Treated_2-Control     9.645971   0.6410389  18.65090 0.0327921213124364
