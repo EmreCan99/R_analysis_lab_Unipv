@@ -12,10 +12,10 @@ bound_names <- c()
 
 # Use a for loop to dynamically bind rows
 data_combined <- bind_rows(
-  lapply(names(gl_bax.p[[ab]]), function(name) {
+  lapply(names(gl_casp3.p[[ab]]), function(name) {
     bound_names <<- c(bound_names, name) 
     # Collect the names of data frames
-    gl_bax.p[[ab]][[name]]
+    gl_casp3.p[[ab]][[name]]
   }),
   .id = "source"  # Add "source" column to track origin
 )
@@ -43,7 +43,7 @@ data_combined <- data_combined %>%
 
 
 # Visialise the outliers in a Boxplot
-bar_name <- "Bax_1A"
+bar_name <- "casp3_1A"
 
 ggplot(data_combined, aes(x = bar_name, Mean, color = source)) + 
   geom_boxplot(width = 0.3, colour = "grey", fill = "turquoise", alpha = 0.3, outlier.shape = NA) +

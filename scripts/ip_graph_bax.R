@@ -2,12 +2,14 @@
 
 # Graph of Immunopositivity
 
+# takes data as : plot_data
+
 # Extract mean and standard error
 means <- as.numeric(ip_set_combined[1, ])
 se <- as.numeric(ip_set_combined[2, ])
 column_names <- names(ip_set_combined)
 
-# Create a data frame for plotting
+# Create a data frame for plotting (again)
 library(scales)
 
 plot_data <- data.frame(

@@ -23,7 +23,7 @@ data_combined <- bind_rows(
 cat("Data frames bound:\n", paste(bound_names, collapse = ", "), "\n")
 cat("for ", ab, "\n")
 # EXCLUDE THE AREAS
-data_combined <- data_combined[data_combined$X != 1,]
+data_combined <- data_combined[data_combined$X != 1 & data_combined$X != 2, ]
 cat("Area rows dropped\n")
 
 
@@ -40,7 +40,7 @@ data_combined <- data_combined %>%
 
 
 # ---
-
+library(ggplot2)
 
 # Visialise the outliers in a Boxplot
 bar_name <- "Bax_1A"

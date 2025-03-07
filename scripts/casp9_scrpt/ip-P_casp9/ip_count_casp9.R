@@ -1,0 +1,248 @@
+
+# Iterate through the sublist and calculate density
+threshold <- 98
+
+# ab to replace 7
+
+# Sink
+path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/casp9.ip-p.txt"
+sink(path, append = TRUE)
+cat("1B, 7B, 11B, for the threshold ",threshold, "\n\n")
+sink()
+
+
+# CONTROL ----
+
+l_1B_list <- gl_casp9.p$l_1B
+
+dens_list <- list() 
+
+for (df_name in names(l_1B_list)) {
+  if (df_name != "Normality"){
+  df <- l_1B_list[[df_name]]
+
+  # Filter rows, ignoring the first
+  first_row <- df[1, , drop = FALSE] # Extract the first row
+  rest_rows <- df[2:nrow(df), ] # Extract the rest of the rows
+  
+  filtered_rest <- rest_rows %>% filter(Mean > threshold) # Filter
+  cat(df_name, "-> ",nrow(rest_rows) - nrow(filtered_rest), " : Cells dropped (negative) \n")
+  
+  df <- bind_rows(first_row, filtered_rest) # Combine
+  
+  area <- df$Area[1]
+  values <- df$Area[2:nrow(df)]
+  density <- sum(values) / area
+  
+  dens_list[[df_name]] <- density # Store density with data frame name
+  if (is.na(density)){
+    dens_list[[df_name]] <- 0
+    cat (df_name, " has no positive cells \n")
+  }
+  
+  # Sink to the txt file
+  path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/casp9.ip-p.txt"
+  sink(path, append = TRUE)
+
+  cat(df_name, " : ", density, "\n")
+  sink()
+  
+  }
+  # Prepare the df for Kruskal test
+  cnt_densities <- dens_list
+  
+}
+
+# Calculate mean and standard error
+densities <- unlist(dens_list) # Convert dens_list to a numeric vector
+
+cnt_mean_density <- mean(densities)
+sd_density <- sd(densities)
+cnt_se_density <- sd_density / sqrt(length(densities)) # Standard error
+
+# Print the results
+print(dens_list)
+cat("Mean density:", cnt_mean_density, "\n")
+cat("Standard error:", cnt_se_density, "\n")
+
+
+
+# Treated 1 ----
+
+l_7B_list <- gl_casp9.p$l_7B
+
+dens_list <- list() 
+
+for (df_name in names(l_7B_list)) {
+  if (df_name != "Normality"){
+  df <- l_7B_list[[df_name]]
+  
+  # Filter rows, ignoring the first
+  first_row <- df[1, , drop = FALSE] # Extract the first row
+  rest_rows <- df[2:nrow(df), ] # Extract the rest of the rows
+  
+  filtered_rest <- rest_rows %>% filter(Mean > threshold) # Filter
+  cat(df_name, "-> ",nrow(rest_rows) - nrow(filtered_rest), " : Cells dropped (negative) \n")
+  
+  df <- bind_rows(first_row, filtered_rest) # Combine
+  
+  area <- df$Area[1]
+  values <- df$Area[2:nrow(df)]
+  density <- sum(values) / area
+  
+  dens_list[[df_name]] <- density # Store density with data frame name
+  if (is.na(density)){
+    dens_list[[df_name]] <- 0
+    cat (df_name, " has no positive cells \n")
+    }
+    
+    # Sink to the txt file
+    path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/casp9.ip-p.txt"
+    sink(path, append = TRUE)
+    
+    cat(df_name, " : ", density, "\n")
+    sink()
+    
+  }
+  # Prepare the df for Kruskal test
+  trt1_densities <- dens_list
+  
+}
+
+# Calculate mean and standard error
+densities <- unlist(dens_list) # Convert dens_list to a numeric vector
+
+trt1_mean_density <- mean(densities)
+sd_density <- sd(densities)
+trt1_se_density <- sd_density / sqrt(length(densities)) # Standard error
+
+# Print the results
+print(dens_list)
+cat("Mean density:", trt1_mean_density, "\n")
+cat("Standard error:", trt1_se_density, "\n")
+
+
+
+
+# Treated 2 ----
+
+l_11B_list <- gl_casp9.p$l_11B
+
+dens_list <- list() 
+
+for (df_name in names(l_11B_list)) {
+  if (df_name != "Normality"){
+  df <- l_11B_list[[df_name]]
+  
+  # Filter rows, ignoring the first
+  first_row <- df[1, , drop = FALSE] # Extract the first row
+  rest_rows <- df[2:nrow(df), ] # Extract the rest of the rows
+  
+  filtered_rest <- rest_rows %>% filter(Mean > threshold) # Filter
+  cat(df_name, "-> ",nrow(rest_rows) - nrow(filtered_rest), " : Cells dropped (negative) \n")
+  
+  df <- bind_rows(first_row, filtered_rest) # Combine
+  
+  area <- df$Area[1]
+  values <- df$Area[2:nrow(df)]
+  density <- sum(values) / area
+  
+  dens_list[[df_name]] <- density # Store density with data frame name
+  if (is.na(density)){
+    dens_list[[df_name]] <- 0
+    cat (df_name, " has no positive cells \n")
+  }
+    
+    # Sink to the txt file
+    path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/casp9.ip-p.txt"
+    sink(path, append = TRUE)
+    
+    cat(df_name, " : ", density, "\n")
+    sink()
+  
+  }
+  # Prepare the df for Kruskal test
+  trt2_densities <- dens_list
+}
+
+# Calculate mean and standard error
+densities <- unlist(dens_list) # Convert dens_list to a numeric vector
+
+trt2_mean_density <- mean(densities)
+sd_density <- sd(densities)
+trt2_se_density <- sd_density / sqrt(length(densities)) # Standard error
+
+# Print the results
+print(dens_list)
+cat("Mean density:", trt2_mean_density, "\n")
+cat("Standard error:", trt2_se_density, "\n")
+
+
+
+# Combine ab's to a single data.frame for ANOVA ----
+
+ip_set_combined <- bind_rows(
+  Control = c(cnt_mean_density, cnt_se_density),
+  Treated_1 = c(trt1_mean_density, trt1_se_density),
+  Treated_2 = c(trt2_mean_density, trt2_se_density),
+  .id = "Group"
+)
+
+cat("set combined for IP Graph")
+
+
+
+# Graph of Immunopositivity (Just preparing the data)
+
+# Extract mean and standard error
+means <- as.numeric(ip_set_combined[1, ])
+se <- as.numeric(ip_set_combined[2, ])
+column_names <- names(ip_set_combined)
+
+# Create a data frame for plotting
+plot_data <- data.frame(
+  Group = column_names,
+  Mean = means,
+  SE = se
+)
+
+
+# Sink to the txt file
+
+path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/casp9.ip-p.txt"
+sink(path, append = TRUE)
+
+cat("\n Table", "\n")
+
+print(plot_data)
+
+cat("\n ----- \n")
+
+sink()
+
+
+gl_dens <- list(Control = cnt_densities, Treated_1 = trt1_densities, Treated_2 = trt2_densities)
+
+# Flatten the nested list into a data frame
+data_sig <- bind_rows(
+  lapply(names(gl_dens), function(group) {
+    data.frame(
+      Sample = names(gl_dens[[group]]), # Extract sample names
+      Density = unlist(gl_dens[[group]]), # Extract numeric values
+      Group = group                     # Add group name
+    )
+  })
+)
+
+
+
+print(data_sig)
+
+# Save the this batch of plot_data and data_sig
+
+saveRDS(plot_data, file = "analysis/raw_rds/casp9_ip_1B_7B_11B_plot_data.p.rds")
+
+saveRDS(data_sig, file = "analysis/raw_rds/casp9_ip_1B_7B_11B_data_sig.p.rds")
+
+
+

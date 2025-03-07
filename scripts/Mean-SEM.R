@@ -1,4 +1,4 @@
-group_name <- "1A, 7A, 11A"
+group_name <- "1B, 7B, 11B"
 
 # Calculate means and standard deviations for each group
 group_summary <- aggregate(Mean ~ Group, data = set_combined, FUN = function(x) c(mean = mean(x), sd = sd(x), n = length(x)))
@@ -22,7 +22,7 @@ print(result_df)
 
 # Sink to the txt file
 
-path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/bax.od-p.txt"
+path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/bax.od-g.txt"
 sink(path, append = TRUE)
 
 cat("\n", group_name, "Means ± SEM \n")
