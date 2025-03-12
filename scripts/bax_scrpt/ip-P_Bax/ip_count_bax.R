@@ -3,23 +3,24 @@
 threshold <- 96
 
 # ab to replace 7
+library(dplyr)
 
 # Sink
 path <- "/Users/emrecanciftci/betik/R_projects/lab_data_unipv/analysis/bax.ip-p.txt"
 sink(path, append = TRUE)
-cat("1B, 7B, 11B, for the threshold ",threshold, "\n\n")
+cat("1A, 7A, 11A, for the threshold ",threshold, "\n\n")
 sink()
 
 
 # CONTROL ----
 
-l_1B_list <- gl_bax.p$l_1B
+l_1A_list <- gl_bax.p$l_1A
 
 dens_list <- list() 
 
-for (df_name in names(l_1B_list)) {
+for (df_name in names(l_1A_list)) {
   if (df_name != "Normality"){
-  df <- l_1B_list[[df_name]]
+  df <- l_1A_list[[df_name]]
 
   # Filter rows, ignoring the first
   first_row <- df[1, , drop = FALSE] # Extract the first row
@@ -69,13 +70,13 @@ cat("Standard error:", cnt_se_density, "\n")
 
 # Treated 1 ----
 
-l_7B_list <- gl_bax.p$l_7B
+l_7A_list <- gl_bax.p$l_7A
 
 dens_list <- list() 
 
-for (df_name in names(l_7B_list)) {
+for (df_name in names(l_7A_list)) {
   if (df_name != "Normality"){
-  df <- l_7B_list[[df_name]]
+  df <- l_7A_list[[df_name]]
   
   # Filter rows, ignoring the first
   first_row <- df[1, , drop = FALSE] # Extract the first row
@@ -126,13 +127,13 @@ cat("Standard error:", trt1_se_density, "\n")
 
 # Treated 2 ----
 
-l_11B_list <- gl_bax.p$l_11B
+l_11A_list <- gl_bax.p$l_11A
 
 dens_list <- list() 
 
-for (df_name in names(l_11B_list)) {
+for (df_name in names(l_11A_list)) {
   if (df_name != "Normality"){
-  df <- l_11B_list[[df_name]]
+  df <- l_11A_list[[df_name]]
   
   # Filter rows, ignoring the first
   first_row <- df[1, , drop = FALSE] # Extract the first row
@@ -224,25 +225,45 @@ sink()
 gl_dens <- list(Control = cnt_densities, Treated_1 = trt1_densities, Treated_2 = trt2_densities)
 
 # Flatten the nested list into a data frame
-data_sig <- bind_rows(
-  lapply(names(gl_dens), function(group) {
-    data.frame(
-      Sample = names(gl_dens[[group]]), # Extract sample names
-      Density = unlist(gl_dens[[group]]), # Extract numeric values
-      Group = group                     # Add group name
-    )
-  })
-)
+
+# data_sig <- bind_rows(
+#   lapply(names(gl_dens), function(group) {
+#     data.frame(
+#       Sample = names(gl_dens[[group]]), # Extract sample names
+#       Density = unlist(gl_dens[[group]]), # Extract numeric values
+#       Group = group                     # Add group name
+#     )
+#   })
+# )
 
 
+library(dplyr)
 
-print(data_sig)
+duplicate_groups <- function(gl_dens) {
+  data_sig <- bind_rows(
+    lapply(names(gl_dens), function(group) {
+      group_data <- data.frame(
+        Sample = names(gl_dens[[group]]),
+        Density = unlist(gl_dens[[group]]),
+        Group = group
+      )
+      # Duplicate the group data three times
+      bind_rows(replicate(3, group_data, simplify = FALSE))
+    })
+  )
+  return(data_sig)
+}
+
+data_sigx3 <- duplicate_groups(gl_dens)
+
+
+print(data_sigx3)
 
 # Save the this batch of plot_data and data_sig
 
-saveRDS(plot_data, file = "analysis/raw_rds/bax_ip_1B_7B_11B_plot_data.p.rds")
+saveRDS(plot_data, file = "analysis/raw_rds/bax_ip_1A_7A_11A_plot_data.p.rds")
 
-saveRDS(data_sig, file = "analysis/raw_rds/bax_ip_1B_7B_11B_data_sig.p.rds")
+saveRDS(data_sigx3, file = "analysis/raw_rds/bax_ip_1A_7A_11A_data_sig.p.rds")
 
 
 

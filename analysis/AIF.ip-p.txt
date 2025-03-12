@@ -36,3 +36,70 @@ p100  :  0.0130966
 3 Treated_2 0.01675183 0.002868158
 
  ----- 
+AFTER the 3x
+
+1A, 7A, 11A, for the threshold  103 
+
+p73  :  NA 
+p76  :  0.005756676 
+p77  :  0.003038742 
+p83  :  0.002560193 
+p84  :  NA 
+p86  :  NA 
+p91  :  0.008360068 
+p93  :  NA 
+p95  :  NA 
+
+ Table 
+      Group         Mean           SE
+1   Control 0.0029318061 0.0016626692
+2 Treated_1 0.0008533977 0.0008533977
+3 Treated_2 0.0027866893 0.0027866893
+
+ ----- 
+ANOVA 1A, 7A, 11A 
+            Df     Sum Sq     Mean Sq F value Pr(>F)
+Group        2 0.00002424 0.000012118   1.435  0.258
+Residuals   24 0.00020265 0.000008444               
+ANOVA test shows no significance 
+
+ ----- 
+1B, 7B, 11B, for the threshold  103 
+
+p78  :  0.01469624 
+p79  :  0.007621974 
+p80  :  0.01276911 
+p87  :  NA 
+p89  :  NA 
+p90  :  0.003770849 
+p97  :  0.0147508 
+p98  :  0.02240808 
+p100  :  0.0130966 
+
+ Table 
+      Group       Mean          SE
+1   Control 0.01169577 0.002111503
+2 Treated_1 0.00125695 0.001256950
+3 Treated_2 0.01675183 0.002868158
+
+ ----- 
+ANOVA 1B, 7B, 11B 
+            Df        Sum Sq        Mean Sq  F value          Pr(>F)    
+Group        2 0.00112387167 0.000561935836 52.52461 0.0000000017119 ***
+Residuals   24 0.00025676457 0.000010698524                             
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Tukey's 
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Density ~ Group, data = data_sigx3)
+
+$Group
+                                diff              lwr               upr          p adj
+Treated_1-Control   -0.0104388236461 -0.0142893858874 -0.00658826140482 0.000001549356
+Treated_2-Control    0.0050560524525  0.0012054902112  0.00890661469379 0.008576002550
+Treated_2-Treated_1  0.0154948760986  0.0116443138573  0.01934543833991 0.000000001320
+
+
+ ----- 

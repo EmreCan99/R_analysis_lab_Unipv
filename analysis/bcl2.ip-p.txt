@@ -41,3 +41,140 @@ p104  :  0.01931397
 3 Treated_2 0.01557950 0.001867958
 
  ----- 
+1A, 7A, 11A, for the threshold  91 
+
+1A, 7A, 11A, for the threshold  91 
+
+p74  :  0.003196627 
+p75  :  0.01187534 
+p77  :  0.006113796 
+p85  :  NA 
+p87  :  0.005548252 
+p88  :  0.008924827 
+p93  :  0.005772573 
+p95  :  0.002872925 
+p97  :  0.003836055 
+
+ Table 
+      Group        Mean           SE
+1   Control 0.007061921 0.0025497858
+2 Treated_1 0.004824359 0.0026016756
+3 Treated_2 0.004160518 0.0008526324
+
+ ----- 
+1A, 7A, 11A, for the threshold  91 
+
+p74  :  0.003196627 
+p75  :  0.01187534 
+p77  :  0.006113796 
+p85  :  NA 
+p87  :  0.005548252 
+p88  :  0.008924827 
+p93  :  0.005772573 
+p95  :  0.002872925 
+p97  :  0.003836055 
+
+ Table 
+      Group        Mean           SE
+1   Control 0.007061921 0.0025497858
+2 Treated_1 0.004824359 0.0026016756
+3 Treated_2 0.004160518 0.0008526324
+
+ ----- 
+1A, 7A, 11A, for the threshold  91 
+
+p74  :  0.003196627 
+p75  :  0.01187534 
+p77  :  0.006113796 
+p85  :  NA 
+p87  :  0.005548252 
+p88  :  0.008924827 
+p93  :  0.005772573 
+p95  :  0.002872925 
+p97  :  0.003836055 
+
+ Table 
+      Group        Mean           SE
+1   Control 0.007061921 0.0025497858
+2 Treated_1 0.004824359 0.0026016756
+3 Treated_2 0.004160518 0.0008526324
+
+ ----- 
+1A, 7A, 11A, for the threshold  91 
+
+p74  :  0.003196627 
+p75  :  0.01187534 
+p77  :  0.006113796 
+p85  :  NA 
+p87  :  0.005548252 
+p88  :  0.008924827 
+p93  :  0.005772573 
+p95  :  0.002872925 
+p97  :  0.003836055 
+
+ Table 
+      Group        Mean           SE
+1   Control 0.007061921 0.0025497858
+2 Treated_1 0.004824359 0.0026016756
+3 Treated_2 0.004160518 0.0008526324
+
+ ----- 
+ANOVA 1A, 7A, 11A 
+            Df   Sum Sq   Mean Sq F value    Pr(>F)    
+Group        2 0.001307 0.0006534   15.99 0.0000263 ***
+Residuals   27 0.001104 0.0000409                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Tukey's 
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Density ~ Group, data = data_sigx3)
+
+$Group
+                             diff          lwr          upr     p adj
+Treated_1-Control   -0.0137003623 -0.020690035 -0.006710689 0.0001279
+Treated_2-Control   -0.0004658283 -0.007938103  0.007006447 0.9869213
+Treated_2-Treated_1  0.0132345341  0.006244861  0.020224207 0.0001988
+
+
+ ----- 
+1B, 7B, 11B, for the threshold  91 
+
+p79  :  0.008536214 
+p80  :  0.01307188 
+p81  :  0.01527898 
+p90  :  0.009412796 
+p91  :  0.01659287 
+p92  :  0.01543914 
+p102  :  0.01362208 
+p103  :  0.01380247 
+p104  :  0.01931397 
+
+ Table 
+      Group       Mean          SE
+1   Control 0.01229569 0.001984782
+2 Treated_1 0.01381493 0.002226125
+3 Treated_2 0.01557950 0.001867958
+
+ ----- 
+ANOVA 1B, 7B, 11B 
+            Df   Sum Sq   Mean Sq F value    Pr(>F)    
+Group        2 0.001307 0.0006534   15.99 0.0000263 ***
+Residuals   27 0.001104 0.0000409                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Tukey's 
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Density ~ Group, data = data_sigx3)
+
+$Group
+                             diff          lwr          upr     p adj
+Treated_1-Control   -0.0137003623 -0.020690035 -0.006710689 0.0001279
+Treated_2-Control   -0.0004658283 -0.007938103  0.007006447 0.9869213
+Treated_2-Treated_1  0.0132345341  0.006244861  0.020224207 0.0001988
+
+
+ ----- 

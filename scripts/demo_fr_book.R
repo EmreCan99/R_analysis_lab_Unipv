@@ -95,4 +95,12 @@ m11B <- mean(data_combined$Mean)
 
 
 
+# Retrieve
+
+plot_data <- svd_AIF_plt_A
+
+svd_AIF_plt_A <- readRDS("analysis/raw_rds/bcl2_ip_1A_7A_11A_plot_data.p.rds")
+svd_AIF_plt_B <- readRDS("analysis/raw_rds/bcl2_ip_1B_7B_11B_plot_data.p.rds")
+
+
 

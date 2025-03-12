@@ -109,3 +109,127 @@ p109  :  0.02282805
 3 Treated_2 0.01846156 0.001906854
 
  ----- 
+AFTER THE 3x Duplication
+
+ANOVA 1A, 7A, 11A 
+            Df   Sum Sq   Mean Sq F value    Pr(>F)    
+Group        2 0.001307 0.0006534   15.99 0.0000263 ***
+Residuals   27 0.001104 0.0000409                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Tukey's 
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Density ~ Group, data = data_sigx3)
+
+$Group
+                             diff          lwr          upr     p adj
+Treated_1-Control   -0.0137003623 -0.020690035 -0.006710689 0.0001279
+Treated_2-Control   -0.0004658283 -0.007938103  0.007006447 0.9869213
+Treated_2-Treated_1  0.0132345341  0.006244861  0.020224207 0.0001988
+
+
+ ----- 
+1B, 7B, 11B, for the threshold  96 
+
+p87  :  0.02315719 
+p88  :  0.02982564 
+p89  :  0.01676843 
+p90  :  0.01075745 
+p96  :  0.003673668 
+p97  :  0.01892631 
+p98  :  0.009302577 
+p106  :  0.02036333 
+p107  :  0.01613502 
+p108  :  0.01451982 
+p109  :  0.02282805 
+
+ Table 
+      Group       Mean          SE
+1   Control 0.02012718 0.004106032
+2 Treated_1 0.01063419 0.004453114
+3 Treated_2 0.01846156 0.001906854
+
+ ----- 
+ANOVA 1B, 7B, 11B 
+            Df    Sum Sq    Mean Sq F value Pr(>F)   
+Group        2 0.0005075 0.00025377   6.954 0.0033 **
+Residuals   30 0.0010948 0.00003649                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Tukey's 
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Density ~ Group, data = data_sigx3)
+
+$Group
+                            diff          lwr          upr     p adj
+Treated_1-Control   -0.009492991 -0.016059981 -0.002926002 0.0034687
+Treated_2-Control   -0.001665619 -0.007745471  0.004414232 0.7794646
+Treated_2-Treated_1  0.007827372  0.001260382  0.014394362 0.0168090
+
+
+ ----- 
+1A, 7A, 11A, for the threshold  96 
+
+p84  :  0.02132293 
+p85  :  0.01587893 
+p86  :  0.02422866 
+p92  :  0.009284431 
+p93  :  0.005839945 
+p94  :  NA 
+p95  :  0.01198154 
+p100  :  0.02612872 
+p102  :  0.02684128 
+p103  :  0.007063038 
+
+ Table 
+      Group        Mean          SE
+1   Control 0.020476842 0.002447202
+2 Treated_1 0.006776479 0.002584896
+3 Treated_2 0.020011013 0.006477255
+
+ ----- 
+1A, 7A, 11A, for the threshold  96 
+
+p84  :  0.02132293 
+p85  :  0.01587893 
+p86  :  0.02422866 
+p92  :  0.009284431 
+p93  :  0.005839945 
+p94  :  NA 
+p95  :  0.01198154 
+p100  :  0.02612872 
+p102  :  0.02684128 
+p103  :  0.007063038 
+
+ Table 
+      Group        Mean          SE
+1   Control 0.020476842 0.002447202
+2 Treated_1 0.006776479 0.002584896
+3 Treated_2 0.020011013 0.006477255
+
+ ----- 
+1A, 7A, 11A, for the threshold  96 
+
+p84  :  0.02132293 
+p85  :  0.01587893 
+p86  :  0.02422866 
+p92  :  0.009284431 
+p93  :  0.005839945 
+p94  :  NA 
+p95  :  0.01198154 
+p100  :  0.02612872 
+p102  :  0.02684128 
+p103  :  0.007063038 
+
+ Table 
+      Group        Mean          SE
+1   Control 0.020476842 0.002447202
+2 Treated_1 0.006776479 0.002584896
+3 Treated_2 0.020011013 0.006477255
+
+ ----- 
+

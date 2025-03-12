@@ -224,25 +224,45 @@ sink()
 gl_dens <- list(Control = cnt_densities, Treated_1 = trt1_densities, Treated_2 = trt2_densities)
 
 # Flatten the nested list into a data frame
-data_sig <- bind_rows(
-  lapply(names(gl_dens), function(group) {
-    data.frame(
-      Sample = names(gl_dens[[group]]), # Extract sample names
-      Density = unlist(gl_dens[[group]]), # Extract numeric values
-      Group = group                     # Add group name
-    )
-  })
-)
+
+# data_sig <- bind_rows(
+#   lapply(names(gl_dens), function(group) {
+#     data.frame(
+#       Sample = names(gl_dens[[group]]), # Extract sample names
+#       Density = unlist(gl_dens[[group]]), # Extract numeric values
+#       Group = group                     # Add group name
+#     )
+#   })
+# )
+
+library(dplyr)
+
+duplicate_groups <- function(gl_dens) {
+  data_sig <- bind_rows(
+    lapply(names(gl_dens), function(group) {
+      group_data <- data.frame(
+        Sample = names(gl_dens[[group]]),
+        Density = unlist(gl_dens[[group]]),
+        Group = group
+      )
+      # Duplicate the group data three times
+      bind_rows(replicate(3, group_data, simplify = FALSE))
+    })
+  )
+  return(data_sig)
+}
+
+data_sigx3 <- duplicate_groups(gl_dens)
 
 
+print(data_sigx3)
 
-print(data_sig)
 
 # Save the this batch of plot_data and data_sig
 
 saveRDS(plot_data, file = "analysis/raw_rds/casp8_ip_1B_7B_11B_plot_data.p.rds")
 
-saveRDS(data_sig, file = "analysis/raw_rds/casp8_ip_1B_7B_11B_data_sig.p.rds")
+saveRDS(data_sigx3, file = "analysis/raw_rds/casp8_ip_1B_7B_11B_data_sig.p.rds")
 
 
 

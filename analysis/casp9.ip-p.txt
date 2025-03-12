@@ -36,3 +36,80 @@ p109  :  0.03381272
 3 Treated_2 0.03192263 0.001074315
 
  ----- 
+AFTER 3x
+
+1A, 7A, 11A, for the threshold  98 
+
+1A, 7A, 11A, for the threshold  98 
+
+p73  :  0.0389729756166 
+p74  :  0.028290737593 
+p76  :  0.0275118687688 
+p85  :  0.0316115461439 
+p86  :  0.0197234513396 
+p89  :  0.0324445878446 
+p98  :  0.0287658074706 
+p100  :  0.0347572056473 
+p101  :  0.0391947214392 
+
+ Table 
+      Group            Mean               SE
+1   Control 0.0315918606595 0.00369740010770
+2 Treated_1 0.0279265284427 0.00410858228137
+3 Treated_2 0.0342392448524 0.00302168684567
+
+ ----- 
+ANOVA 1A, 7A, 11A 
+            Df         Sum Sq         Mean Sq F value   Pr(>F)  
+Group        2 0.000180881075 0.0000904405377 3.03886 0.066619 .
+Residuals   24 0.000714272532 0.0000297613555                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+ANOVA test shows no significance 
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Density ~ Group, data = data_sigx3)
+
+$Group
+                                 diff                lwr              upr          p adj
+Treated_1-Control   -0.00366533221680 -0.010087602425351 0.00275693799175 0.344216876330
+Treated_2-Control    0.00264738419288 -0.003774886015668 0.00906965440143 0.565972504131
+Treated_2-Treated_1  0.00631271640968 -0.000109553798866 0.01273498661823 0.054673123746
+
+
+ ----- 
+1B, 7B, 11B, for the threshold  98 
+
+p80  :  0.0314945127068 
+p81  :  0.0373170453615 
+p82  :  0.0369903999117 
+p93  :  0.0246193646777 
+p94  :  0.0446601211022 
+p96  :  0.0511207609464 
+p107  :  0.0318625198978 
+p108  :  0.0300926400368 
+p109  :  0.0338127207157 
+
+ Table 
+      Group            Mean               SE
+1   Control 0.0352673193267 0.00188875855661
+2 Treated_1 0.0401334155754 0.00797808035061
+3 Treated_2 0.0319226268835 0.00107431523953
+
+ ----- 
+ANOVA test shows no significance 
+Tukey's 
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Density ~ Group, data = data_sigx3)
+
+$Group
+                                 diff               lwr               upr          p adj
+Treated_1-Control    0.00486609624875 -0.00356394811954 0.013296140617030 0.336288250969
+Treated_2-Control   -0.00334469244321 -0.01177473681150 0.005085351925072 0.589604722741
+Treated_2-Treated_1 -0.00821078869196 -0.01664083306024 0.000219255676326 0.057277864638
+
+
+ ----- 
