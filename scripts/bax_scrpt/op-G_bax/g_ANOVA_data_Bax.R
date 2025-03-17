@@ -1,13 +1,15 @@
 
 # Combine all data frames of one ab ----
+library(dplyr)
 
+# 3 ab to replace 
 
 # cnt_combined ----
 # Use a for loop to dynamically bind rows
 cnt_combined <- bind_rows(
-  lapply(names(gl_bax.g$l_1B), function(name) {
+  lapply(names(gl_bax.g$l_1A), function(name) {
     if (name != "Normality"){
-    gl_bax.g$l_1B[[name]]}
+    gl_bax.g$l_1A[[name]]}
   }),
   .id = "source"  # Add "source" column to track origin
 )
@@ -32,9 +34,9 @@ cat(num_outliers, "Outlier rows dropped\n")
 # trtA_combined ----
 # Use a for loop to dynamically bind rows
 trt1_combined <- bind_rows(
-  lapply(names(gl_bax.g$l_7B), function(name) {
+  lapply(names(gl_bax.g$l_7A), function(name) {
     if (name != "Normality"){
-    gl_bax.g$l_7B[[name]]}
+    gl_bax.g$l_7A[[name]]}
   }),
   .id = "source"  # Add "source" column to track origin
 )
@@ -61,9 +63,9 @@ cat(num_outliers, "Outlier rows dropped\n")
 # trtB_combined ----
 # Use a for loop to dynamically bind rows
 trt2_combined <- bind_rows(
-  lapply(names(gl_bax.g$l_11B), function(name) {
+  lapply(names(gl_bax.g$l_11A), function(name) {
     if (name != "Normality"){
-    gl_bax.g$l_11B[[name]]}
+    gl_bax.g$l_11A[[name]]}
   }),
   .id = "source"  # Add "source" column to track origin
 )
@@ -100,9 +102,13 @@ set_combined <- bind_rows(
 cat("set combined for ANOVA")
 
 
+
+
+
+
 # Save the this batch of set_combined (Final save of the data)
 
-saveRDS(set_combined, file = "analysis/raw_rds/bax_1B_7B_11B.op.g.rds")
+saveRDS(set_combined, file = "analysis/raw_rds/bax_1A_7A_11A.op.g.rds")
 
 
 

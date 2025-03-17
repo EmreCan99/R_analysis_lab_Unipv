@@ -4,7 +4,7 @@ options(scipen = 999)
 # 1, 7, 11 must be in a single dataframe with their groups tagged
 # are called: data_sig OR data_sigx3
 
-group_title <- "1B, 7B, 11B"
+group_title <- "1A, 1A, 11A"
 alpha <- 0.05
 
 # Anova

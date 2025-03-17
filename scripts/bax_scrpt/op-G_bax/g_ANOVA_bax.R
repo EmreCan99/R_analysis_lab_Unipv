@@ -33,7 +33,7 @@ tukey_df <- data.frame(
 )
 
 # ! Change the list Title
-group_title <- "1B,7B,11B"
+group_title <- "1A,7A,11A"
 gl_bax.g$Tukey[[group_title]] <- tukey_df
 
 # Sink to the txt file
